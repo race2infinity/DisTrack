@@ -35,6 +35,10 @@ app.get('/', (req,res) => {
   res.sendFile('views/index.html', { root: __dirname });
 })
 
+app.get('/service', (req,res) => {
+  res.sendFile('views/service.html', { root: __dirname });
+})
+
 app.use('/supplier',supplier);
 
 const port = process.env.PORT || 8080;

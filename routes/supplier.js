@@ -252,7 +252,11 @@ router.get('/get', (req,res) => {
         if (results.length) {
             for(i=0;i<results.length;i++)
               {
-                resultString += `{\"id\":\"${results[0].id}\",\"name\":\"${results[0].name}\",\"latitude\":\"${results[0].latitude}\",\"longitude\":\"${results[0].longitude}\",\"altitude\":\"${results[0].altitude}\"}`;
+                let ok = contractInstance.getSupplierDetails(results[i].id, { from: web3.eth.accounts[0], gas: 3000000 });
+                  if(!ok) {
+                      return res.status(400).send('Error');
+                  }
+                resultString += `{\"id\":\"${results[i].id}\",\"name\":\"${ok[0]}\",\"latitude\":\"${ok[1]}\",\"longitude\":\"${ok[2]}\",\"altitude\":\"${ok[3]}\",\"firstAid\":\"${ok[4]}\",\"foodPack\":\"${ok[5]}\",\"waterPack\":\"${ok[6]}\"}`;
                 if(i!=results.length-1){
                   resultString+=`,`;
                 }

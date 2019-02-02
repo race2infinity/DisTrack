@@ -9,7 +9,7 @@
   <meta name="author" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
- 
+
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -64,7 +64,7 @@ font-weight: 600;
 </head>
 
 <body>
-  
+
   <!-- Navigation -->
   <nav  class="navbar navbar-expand-lg navbar-dark  fixed-top" style="background-color:#d50000;">
     <div class="container">
@@ -92,36 +92,32 @@ font-weight: 600;
                 <div class="col-md-12">
                     <nav>
                         <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Project Tab 1</a>
-                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Project Tab 2</a>
-                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Project Tab 3</a>
+                            <a class="nav-item nav-link active" id="firstTitle" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-profile" aria-selected="false">Project Tab 1</a>
+                            <a class="nav-item nav-link" id="secondTitle" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Project Tab 2</a>
+                            <a class="nav-item nav-link" id="thirdTitle" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Project Tab 3</a>
                         </div>
                     </nav>
                     <div class="tab-content" id="nav-tabContent">
-                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                        <div class="tab-pane fade show active" id="firstTable" role="tabpanel" aria-labelledby="nav-home-tab">
                             <table class="table" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th>Project Name</th>
-                                        <th>Employer</th>
-                                        <th>Awards</th>
+                                        <th>Supply Name</th>
+                                        <th>Count</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><a href="#">Work 1</a></td>
-                                        <td>Doe</td>
-                                        <td>john@example.com</td>
+                                        <td>First Aid</td>
+                                        <td id="_1">0</td>
                                     </tr>
                                     <tr>
-                                        <td><a href="#">Work 2</a></td>
-                                        <td>Moe</td>
-                                        <td>mary@example.com</td>
+                                        <td>Food Packs</td>
+                                        <td>0</td>
                                     </tr>
                                     <tr>
-                                        <td><a href="#">Work 3</a></td>
-                                        <td>Dooley</td>
-                                        <td>july@example.com</td>
+                                        <td>Water Pack</td>
+                                        <td>0</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -130,26 +126,22 @@ font-weight: 600;
                             <table class="table" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th>Project Name</th>
-                                        <th>Employer</th>
-                                        <th>Time</th>
+                                        <th>Supply Name</th>
+                                        <th>Count</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><a href="#">Work 1</a></td>
+                                        <td>First Aid</td>
                                         <td>Doe</td>
-                                        <td>john@example.com</td>
                                     </tr>
                                     <tr>
-                                        <td><a href="#">Work 2</a></td>
-                                        <td>Moe</td>
-                                        <td>mary@example.com</td>
+                                        <td>Food Pack</td>
+                                        <td>0</td>
                                     </tr>
                                     <tr>
-                                        <td><a href="#">Work 3</a></td>
-                                        <td>Dooley</td>
-                                        <td>july@example.com</td>
+                                        <td>Water Pack</td>
+                                        <td>0</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -158,26 +150,22 @@ font-weight: 600;
                             <table class="table" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th>Contest Name</th>
-                                        <th>Date</th>
-                                        <th>Award Position</th>
+                                        <th>Supply Name</th>
+                                        <th>Count</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><a href="#">Work 1</a></td>
+                                        <td>First Aid</td>
                                         <td>Doe</td>
-                                        <td>john@example.com</td>
                                     </tr>
                                     <tr>
-                                        <td><a href="#">Work 2</a></td>
-                                        <td>Moe</td>
-                                        <td>mary@example.com</td>
+                                        <td>Food Pack</td>
+                                        <td>0</td>
                                     </tr>
                                     <tr>
-                                        <td><a href="#">Work 3</a></td>
-                                        <td>Dooley</td>
-                                        <td>july@example.com</td>
+                                        <td>Water Pack</td>
+                                        <td>0</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -189,11 +177,26 @@ font-weight: 600;
     </section>
 <script type="text/javascript">
 
+function loadData(){
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          //alert(xhttp.responseText);
+          var json=JSON.parse(xhttp.responseText);
+          document.getElementById("firstTitle").innerHTML = json.supplier[0].name;
+          document.getElementById("secondTitle").innerHTML = json.supplier[1].name;
+          document.getElementById("thirdTitle").innerHTML = json.supplier[2].name;
+
+          //document.getElementById("_1").innerHTML=json.supplier[0].;
+
+      }
+  };
+  xhttp.open("GET", "http://localhost:8080/supplier/get", true);
+  xhttp.send();
+}
+
+window.onload=loadData;
 </script>
-
-
-
- 
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>

@@ -2,6 +2,18 @@ var express = require('express');
 var router = express.Router();
 const Web3 = require('web3');
 const mysql = require('mysql');
+const BigNumber = require('bignumber.js')
+
+var crypto = require('crypto'),
+    format = require('biguint-format');
+
+function randomC (qty) {
+    var x= crypto.randomBytes(qty);
+    return format(x, 'dec');
+}
+function random (low, high) {
+    return randomC(4)/Math.pow(2,4*8-1) * (high - low) + low;
+}
 
 // MySQL Connection
 const connection = mysql.createConnection({
@@ -65,9 +77,14 @@ const abiArray = [
 			}
 		],
 		"name": "createAsset",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": true,
+		"stateMutability": "payable",
 		"type": "function"
 	},
 	{
@@ -103,6 +120,29 @@ const abiArray = [
 		],
 		"payable": true,
 		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "a",
+				"type": "string"
+			},
+			{
+				"name": "b",
+				"type": "string"
+			}
+		],
+		"name": "compareStrings",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -156,7 +196,15 @@ const abiArray = [
 			},
 			{
 				"name": "",
-				"type": "string[]"
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "uint256"
 			}
 		],
 		"payable": false,
@@ -165,7 +213,7 @@ const abiArray = [
 	}
 ];
 
-const address = '0x8fb9f61d924e255a75802cec21ffe453dab91820';
+const address = '0x2e9908551069ac8da6de02ad4dfae5cd6e6b1713';
 
 const contract = web3.eth.contract(abiArray);
 
@@ -177,7 +225,7 @@ router.post('/create', (req,res) => {
   let latitude = req.body.latitude;
   let longitude = req.body.longitude;
   let altitude = req.body.altitude;
-  var id="123";
+  var id=crypto.randomBytes(3).toString('hex');
   console.log(name,latitude,longitude,altitude);
   let ok = contractInstance.createSupplier(id, name, latitude, longitude, altitude,
                                                         { from: web3.eth.accounts[0], gas: 3000000 });
@@ -228,7 +276,7 @@ router.get('/asset', (req,res) => {
           if(!ok) {
               return res.status(400).send('Error');
           }
-          resultString+=`{\"id\":\"${results[0].id}\",\"name\":\"${ok[0]}\",\"expire\":\"${ok[1]}\"}`;
+          resultString+=`{\"id\":\"${results[i].id}\",\"name\":\"${ok[0]}\",\"expire\":\"${ok[1]}\"}`;
           if(i!=results.length-1){
             resultString+=`,`;
           }
@@ -240,10 +288,9 @@ router.get('/asset', (req,res) => {
 });
 
 router.post('/createAsset', (req,res) => {
-  console.log("in");
   let name = req.body.name;
   let expire = req.body.expire;
-  var id="123";
+  var id=crypto.randomBytes(3).toString('hex');
   console.log(name,expire);
   let ok = contractInstance.createAsset(id, name, expire,
                                                         { from: web3.eth.accounts[0], gas: 3000000 });
@@ -264,7 +311,9 @@ router.get('/availability', (req,res) => {
   let latitude = req.body.latitude;
   let longitude = req.body.longitude;
   let altitude = req.body.altitude;
-  var dist=[];
+  var firstAid=0;
+  var foodPack=0;
+  var waterPack=0;
   console.log(`latitude: ${latitude}, longitude: ${longitude}, altitude: ${altitude}`);
   connection.query('Select * from SUPPLIER', [] , (error, results) => {
     if (error) {
@@ -278,21 +327,13 @@ router.get('/availability', (req,res) => {
       if(!ok) {
           return res.status(400).send('Error');
       }
-      var myKey=ok.name;
-      if(!(ok.name in dist)){
-        dist.push({
-          key:myKey,
-          value:"1"
-          });
-      }
-      else{
-        var temp=parseInt(dist.ok.name,10)++;
-        var tempString=''+temp;
-        dict.myKey=tempString;
-      }
-
+      //console.log(ok[4].toNumber());
+      firstAid+=ok[4].toNumber();
+      foodPack+=ok[5].toNumber();
+      waterPack+=ok[6].toNumber();
     }
-    console.log(dist);
+    console.log(`First Aid ${firstAid}, foodPack ${foodPack}, waterPack ${waterPack}`);
+    res.send(JSON.parse(JSON.stringify(`{\"firstAid\":\"${firstAid}\",\"foodPack\":\"${foodPack}\",\"waterPack\":\"${waterPack}\"}`)))
   });
 });
 

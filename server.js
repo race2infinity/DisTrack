@@ -29,6 +29,12 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use(express.static(__dirname + '/views'));
+
+app.get('/', (req,res) => {
+  res.sendFile('views/index.html', { root: __dirname });
+})
+
 app.use('/supplier',supplier);
 
 const port = process.env.PORT || 8080;

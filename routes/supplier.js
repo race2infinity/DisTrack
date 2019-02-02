@@ -156,8 +156,25 @@ router.post('/create', (req,res) => {
     });
 })
 
-router.post('/get', (req,res) => {
-
+router.get('/get', (req,res) => {
+  let resultString=`{\"supplier\":[`;
+  connection.query('SELECT * FROM SUPPLIER', [], (error, results) => {
+        if (error) {
+            console.log(error);
+            return res.status(400);
+        }
+        if (results.length) {
+            for(i=0;i<results.length;i++)
+              {
+                resultString += `{\"id\":\"${results[0].id}\",\"name\":\"${results[0].name}\",\"latitude\":\"${results[0].latitude}\",\"longitude\":\"${results[0].longitude}\",\"altitude\":\"${results[0].altitude}\"}`;
+                if(i!=results.length-1){
+                  resultString+=`,`;
+                }
+              }
+              resultString+=`]}`;
+              res.send(resultString);
+        }
+    });
 });
 
 module.exports = router;

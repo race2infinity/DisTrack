@@ -68,7 +68,7 @@ font-weight: 600;
   <!-- Navigation -->
   <nav  class="navbar navbar-expand-lg navbar-dark  fixed-top" style="background-color:#d50000;">
     <div class="container">
-      <a style ="color:#fcfdfd" class="navbar-brand" href="back2.html">DisTrack</a>
+      <a style ="color:#fcfdfd" class="navbar-brand" href="http://localhost:8080">DisTrack</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -113,11 +113,11 @@ font-weight: 600;
                                     </tr>
                                     <tr>
                                         <td>Food Packs</td>
-                                        <td>0</td>
+                                        <td id="_2">0</td>
                                     </tr>
                                     <tr>
                                         <td>Water Pack</td>
-                                        <td>0</td>
+                                        <td id="_3">0</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -133,15 +133,15 @@ font-weight: 600;
                                 <tbody>
                                     <tr>
                                         <td>First Aid</td>
-                                        <td>Doe</td>
+                                        <td id="_4">0</td>
                                     </tr>
                                     <tr>
                                         <td>Food Pack</td>
-                                        <td>0</td>
+                                        <td id="_5">0</td>
                                     </tr>
                                     <tr>
                                         <td>Water Pack</td>
-                                        <td>0</td>
+                                        <td id="_6">0</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -157,15 +157,15 @@ font-weight: 600;
                                 <tbody>
                                     <tr>
                                         <td>First Aid</td>
-                                        <td>Doe</td>
+                                        <td id="_7">0</td>
                                     </tr>
                                     <tr>
                                         <td>Food Pack</td>
-                                        <td>0</td>
+                                        <td id="_8">0</td>
                                     </tr>
                                     <tr>
                                         <td>Water Pack</td>
-                                        <td>0</td>
+                                        <td id="_9">0</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -187,8 +187,17 @@ function loadData(){
           document.getElementById("secondTitle").innerHTML = json.supplier[1].name;
           document.getElementById("thirdTitle").innerHTML = json.supplier[2].name;
 
-          //document.getElementById("_1").innerHTML=json.supplier[0].;
+          document.getElementById("_1").innerHTML=json.supplier[0].firstAid;
+          document.getElementById("_2").innerHTML=json.supplier[0].foodPack;
+          document.getElementById("_3").innerHTML=json.supplier[0].waterPack;
 
+          document.getElementById("_4").innerHTML=json.supplier[1].firstAid;
+          document.getElementById("_5").innerHTML=json.supplier[1].foodPack;
+          document.getElementById("_6").innerHTML=json.supplier[1].waterPack;
+
+          document.getElementById("_7").innerHTML=json.supplier[1].firstAid;
+          document.getElementById("_8").innerHTML=json.supplier[1].foodPack;
+          document.getElementById("_9").innerHTML=json.supplier[1].waterPack;
       }
   };
   xhttp.open("GET", "http://localhost:8080/supplier/get", true);

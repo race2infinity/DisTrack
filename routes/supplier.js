@@ -311,7 +311,7 @@ router.post('/createAsset', (req,res) => {
     });
 });
 
-router.get('/availability', (req,res) => {
+router.post('/availability', (req,res) => {
   let latitude = req.body.latitude;
   let longitude = req.body.longitude;
   let altitude = req.body.altitude;
@@ -337,7 +337,7 @@ router.get('/availability', (req,res) => {
       waterPack+=ok[6].toNumber();
     }
     console.log(`First Aid ${firstAid}, foodPack ${foodPack}, waterPack ${waterPack}`);
-    res.send(JSON.parse(JSON.stringify(`{\"firstAid\":\"${firstAid}\",\"foodPack\":\"${foodPack}\",\"waterPack\":\"${waterPack}\"}`)))
+    res.status(200).send(JSON.parse(JSON.stringify(`{\"firstAid\":\"${firstAid}\",\"foodPack\":\"${foodPack}\",\"waterPack\":\"${waterPack}\"}`)))
   });
 });
 

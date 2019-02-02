@@ -12,9 +12,13 @@
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="animation.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
   <link href="css/heroic-features.css" rel="stylesheet">
+
+
+
 
 </head>
 
@@ -23,14 +27,17 @@
   <!-- Navigation -->
   <nav  class="navbar navbar-expand-lg navbar-dark  fixed-top" style="background-color:#d50000;">
     <div class="container">
-      <a style ="color:#fcfdfd" class="navbar-brand" href="#">DisTrack</a>
+      <a style ="color:#fcfdfd" class="navbar-brand" href="#">
+          <img src="./Pics/DS logo.jpeg" alt="" style="border-radius: 30%; width:15% ; align-self: center">
+        DisTrack
+      </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a style ="color: #fcfdfd " class="nav-link" href="https://github.com/">GitHub
+            <a style ="color: #fcfdfd " class="nav-link" href="#">GitHub
               <span class="sr-only">(current)</span>
             </a>
           </li>
@@ -42,32 +49,45 @@
   <!-- Page Content -->
   <div class="container">
 
-    <!-- Jumbotron Header -->
-    <header class="jumbotron my-4">
-      <h1 class="display-3">DisTrack!</h1>
-      <p class="lead">yala habibi.</p>
+   <!-- Jumbotron Header -->
+   <header class="jumbotron">
+      <div class="container">
+     <h4 style="text-align: center;"><b>Steps</b></h4>
+     <div class="row fadeIn animated">
+        <div class="col-md-8">
+          <p class="lead"><ol><li>One drone is constantly scanning a small area for any signs of a disaster.</li>
+          <li>A disaster occurs at some location. The 1st drone then informs the ledger about this disaster.</li>
+          <li> Based on the availablitiy of drones, a food package drone is sent out to the location in order to drop several food packages.</li></ol></p>
+        </div>
+        <div class="col-md-4">
+            <IMG SRC="./Pics/hi.gif">
+        </div>
+      </div>
       <!-- <a href="#" class="btn btn-primary btn-lg">Call to action!</a> -->
     </header>
+
 
     <!-- Page Features -->
     <div class="row text-center">
 
       <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card h-100">
-          <img class="card-img-top" src="./Pics/Service1.jpg" alt="">
+          <a style="text-decoration:none; color:black" href="http://localhost:8080/service">
+            <div class="card h-100">
+          <img class="card-img-top" src="./Pics/Service1.jpg" alt="" style="width:50% ; align-self: center">
           <div class="card-body">
             <h4 class="card-title">Services</h4>
             <p class="card-text">Services available</p>
           </div>
-          <!-- <div class="card-footer"> -->
-            <a href="http://localhost:8080/service" class="btn btn-primary">Find Out More!</a>
-          <!-- </div> -->
+        </a>
+          <!-- <div class="card-footer">
+                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCart">Service 3</button>
+          </div> -->
         </div>
       </div>
-
+    </a>
       <div class="col-lg-3 col-md-6 mb-4">
         <div class="card h-100">
-          <img class="card-img-top" src="./Pics/Availability.png" alt="">
+          <img class="card-img-top" src="./Pics/Availability.png" alt="" style="width:50% ; align-self: center">
           <div class="card-body">
             <h4 class="card-title">Availability</h4>
             <p class="card-text">Product Available</p>
@@ -80,7 +100,7 @@
 
       <div class="col-lg-3 col-md-6 mb-4">
         <div class="card h-100">
-          <img class="card-img-top" src="./Pics/Transport.png" alt="">
+          <img class="card-img-top" src="./Pics/Transport.png" alt=""  style="width:50% ; align-self: center">
           <div class="card-body">
             <h4 class="card-title">Transport</h4>
             <p class="card-text">Service has been Dispatched</p>
@@ -93,7 +113,7 @@
 
       <div class="col-lg-3 col-md-6 mb-4">
         <div class="card h-100">
-          <img class="card-img-top" src="./Pics/done.png" alt="">
+          <img class="card-img-top" src="./Pics/done.png" alt=""  style="width:50% ; align-self: center">
           <div class="card-body">
             <h4 class="card-title">Done</h4>
             <p class="card-text">Service Delivered  </p>
@@ -110,13 +130,9 @@
   </div>
   <!-- /.container -->
 
-  <!-- Footer -->
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
-    </div>
-    <!-- /.container -->
-  </footer>
+
+
+<hr>
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>

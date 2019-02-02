@@ -14,6 +14,8 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
+var supplier = require('./routes/supplier');
+
 // Logging all the calls made to the function
 app.use((req, res, next) => {
     let date = new Date();
@@ -59,17 +61,7 @@ app.use((req, res, next) => {
  * Receive:     200 if successful, 400 otherwise
  */
 
-app.post('/getSuppliers', (req, res) => {
-    let latitude = req.body.latitude;
-    let longitude = req.body.longitude;
-    let altitude = req.body.altitude;
-    console.log(`latitude: ${latitude}, longitude: ${longitude}, altitude: ${altitude}`);
-    res.send({
-        latitude: latitude,
-        longitude: longitude,
-        altitude: altitude
-    });
-});
+app.use('/supplier',supplier);
 
 const port = process.env.PORT || 8080;
 

@@ -34,6 +34,8 @@
 + We have a global identity system which is decentralized. This is because a centralized system is too valuable of a target.
 + We plan to implement a proof-of-concept system employing a blockchain-based decentralized application where machines have agreements and comunicate each other, unlike the tradional scenario wherein a central authority owns the system.
 
+---
+
 ![Process](https://i.imgur.com/X7Yvlyq.gif)
 
 1. One drone is constantly scanning a small area for any signs of a disaster.

@@ -36,7 +36,13 @@
 
 ---
 
+<div align="center">
+
+
 ![Process](https://i.imgur.com/X7Yvlyq.gif)
+
+
+</div>
 
 1. One drone is constantly scanning a small area for any signs of a disaster.
 2. A disaster occurs at some location. The 1st drone then informs the ledger about this disaster.

@@ -38,6 +38,33 @@ const abiArray = [
 			}
 		],
 		"name": "addAssetsToSupplier",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_id",
+				"type": "string"
+			},
+			{
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"name": "_expire",
+				"type": "string"
+			}
+		],
+		"name": "createAsset",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
@@ -86,6 +113,29 @@ const abiArray = [
 				"type": "string"
 			}
 		],
+		"name": "getAssetDetails",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_id",
+				"type": "string"
+			}
+		],
 		"name": "getSupplierDetails",
 		"outputs": [
 			{
@@ -115,7 +165,7 @@ const abiArray = [
 	}
 ];
 
-const address = '0xe08e398f9110e01540d71aaa447a1e95ad9a4f35';
+const address = '0x8fb9f61d924e255a75802cec21ffe453dab91820';
 
 const contract = web3.eth.contract(abiArray);
 
@@ -154,7 +204,7 @@ router.post('/create', (req,res) => {
         }
       res.send("Succcess");
     });
-})
+});
 
 router.get('/get', (req,res) => {
   let resultString=`{\"supplier\":[`;
@@ -174,6 +224,51 @@ router.get('/get', (req,res) => {
               resultString+=`]}`;
               res.send(resultString);
         }
+    });
+});
+
+router.get('/asset', (req,res) => {
+  let resultString=`{\"supplier\":[`;
+  connection.query('SELECT * FROM ASSETS', [] ,(error,results) => {
+    if (error) {
+        console.log(error);
+        return res.status(400);
+    }
+    if(results.length){
+      console.log("in");
+      for(i=0;i<results.length;i++){
+        let ok = contractInstance.getAssetDetails(results[i].id, { from: web3.eth.accounts[0], gas: 3000000 });
+          if(!ok) {
+              return res.status(400).send('Error');
+          }
+          resultString+=`{\"id\":\"${results[0].id}\",\"name\":\"${ok[0]}\",\"expire\":\"${ok[1]}\"}`;
+          if(i!=results.length-1){
+            resultString+=`,`;
+          }
+      }
+      resultString+=`]}`;
+      res.send(resultString);
+    }
+  });
+});
+
+router.post('/createAsset', (req,res) => {
+  let name = req.body.name;
+  let expire = req.body.expire;
+  var id="123";
+  console.log(name,expire);
+  let ok = contractInstance.createAsset(id, name, expire,
+                                                        { from: web3.eth.accounts[0], gas: 3000000 });
+    if(!ok) {
+        return res.status(400).send('Error');
+    }
+    console.log(`Successfully added ${name} to Blockchain \n`);
+    connection.query('INSERT INTO ASSETS VALUES (?)', [id], (error, results) => {
+      if (error) {
+            console.log(error);
+            return res.status(400);
+        }
+      res.send("Succcess");
     });
 });
 

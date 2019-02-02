@@ -172,18 +172,6 @@ const contract = web3.eth.contract(abiArray);
 const contractInstance = contract.at(address);
 web3.eth.defaultAccount = web3.eth.coinbase;
 
-router.post('/getSuppliers', (req, res) => {
-    let latitude = req.body.latitude;
-    let longitude = req.body.longitude;
-    let altitude = req.body.altitude;
-    console.log(`latitude: ${latitude}, longitude: ${longitude}, altitude: ${altitude}`);
-    res.send({
-        latitude: latitude,
-        longitude: longitude,
-        altitude: altitude
-    });
-});
-
 router.post('/create', (req,res) => {
   let name = req.body.name;
   let latitude = req.body.latitude;
@@ -235,7 +223,6 @@ router.get('/asset', (req,res) => {
         return res.status(400);
     }
     if(results.length){
-      console.log("in");
       for(i=0;i<results.length;i++){
         let ok = contractInstance.getAssetDetails(results[i].id, { from: web3.eth.accounts[0], gas: 3000000 });
           if(!ok) {
@@ -253,6 +240,7 @@ router.get('/asset', (req,res) => {
 });
 
 router.post('/createAsset', (req,res) => {
+  console.log("in");
   let name = req.body.name;
   let expire = req.body.expire;
   var id="123";
@@ -270,6 +258,42 @@ router.post('/createAsset', (req,res) => {
         }
       res.send("Succcess");
     });
+});
+
+router.get('/availability', (req,res) => {
+  let latitude = req.body.latitude;
+  let longitude = req.body.longitude;
+  let altitude = req.body.altitude;
+  var dist=[];
+  console.log(`latitude: ${latitude}, longitude: ${longitude}, altitude: ${altitude}`);
+  connection.query('Select * from SUPPLIER', [] , (error, results) => {
+    if (error) {
+          console.log(error);
+          return res.status(400);
+      }
+    for(i=0;i<results.length;i++){
+      //Itterate through the result and make calls to the Blockchain and append in to a list and then convert into a json object
+      console.log(results[i].id);
+      let ok = contractInstance.getSupplierDetails(results[i].id, { from: web3.eth.accounts[0], gas: 3000000 });
+      if(!ok) {
+          return res.status(400).send('Error');
+      }
+      var myKey=ok.name;
+      if(!(ok.name in dist)){
+        dist.push({
+          key:myKey,
+          value:"1"
+          });
+      }
+      else{
+        var temp=parseInt(dist.ok.name,10)++;
+        var tempString=''+temp;
+        dict.myKey=tempString;
+      }
+
+    }
+    console.log(dist);
+  });
 });
 
 module.exports = router;

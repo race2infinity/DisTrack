@@ -111,8 +111,8 @@ const abiArray = [
 				"type": "bool"
 			}
 		],
-		"payable": false,
-		"stateMutability": "nonpayable",
+		"payable": true,
+		"stateMutability": "payable",
 		"type": "function"
 	},
 	{
@@ -133,6 +133,18 @@ const abiArray = [
 		"constant": false,
 		"inputs": [
 			{
+				"name": "firstAid",
+				"type": "string"
+			},
+			{
+				"name": "foodPack",
+				"type": "string"
+			},
+			{
+				"name": "waterPack",
+				"type": "string"
+			},
+			{
 				"name": "_latitude",
 				"type": "string"
 			},
@@ -142,18 +154,6 @@ const abiArray = [
 			},
 			{
 				"name": "_altitude",
-				"type": "string"
-			},
-			{
-				"name": "_firstAid",
-				"type": "string"
-			},
-			{
-				"name": "_foodPack",
-				"type": "string"
-			},
-			{
-				"name": "_waterPack",
 				"type": "string"
 			}
 		],
@@ -286,7 +286,7 @@ const abiArray = [
 	}
 ];
 
-const address = '0x0971b5d216af52c411c9016bbc63665b4e6f2542';
+const address = '0xbbdb065065218d0a67d5e63031f0dcbc6cab787f';
 
 const contract = web3.eth.contract(abiArray);
 

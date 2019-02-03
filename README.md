@@ -78,11 +78,11 @@ A step by step series of examples that tell you how to get a development env run
 
 Cloning the repo
 ```
-$ git clone https://github.com/kylelobo/AuthentiFi.git
+$ git clone https://github.com/caldenrodrigues/DisTrack.git
 ```
 Installing the dependencies
 ```
-$ cd AuthentiFi
+$ cd DisTrack
 $ npm install
 ```
 Running the server
@@ -185,7 +185,7 @@ Website:
 
 ## Contributing<a name="contributing"></a>
 
-1. Fork it (<https://github.com/kylelobo/AuthentiFi/fork>)
+1. Fork it (<https://github.com/caldenrodrigues/DisTrack/fork>)
 2. Create your feature branch (`git checkout -b feature/fooBar`)
 3. Commit your changes (`git commit -am 'Add some fooBar'`)
 4. Push to the branch (`git push origin feature/fooBar`)
@@ -198,7 +198,7 @@ Website:
 + [Kyle Lobo](https://github.com/kylelobo) <br>
 + [Pratik Nerurkar](https://github.com/PlayPratz) <br>
 
-See also the list of [contributors](https://github.com/kylelobo/AuthentiFi/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/caldenrodrigues/DisTrack/contributors) who participated in this project.
 
 ## Inspiration<a name="inspiration"></a>
 [Eduardo Castello Ferrer](https://www.media.mit.edu/people/ecstll/overview/)

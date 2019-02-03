@@ -2,10 +2,12 @@
 
 <div align="center">
 
+[![DisTrack](https://i.imgur.com/j0ocDe5.jpg)
+
 [![Hackathon](https://img.shields.io/badge/hackathon-KJSCE-orange.svg)](http://hackit.csikjsce.org/) 
 [![Status](https://img.shields.io/badge/status-active-green.svg)]() 
-[![Github Issues](http://githubbadges.herokuapp.com/kylelobo/AuthentiFi/issues.svg?style=flat-square)](https://github.com/kylelobo/AuthentiFi/issues) 
-[![Pending Pull-Requests](http://githubbadges.herokuapp.com/kylelobo/AuthentiFi/pulls.svg?style=flat-square)](https://github.com/kylelobo/AuthentiFi/pulls) 
+[![Github Issues](http://githubbadges.herokuapp.com/caldenrodrigues/DisTrack/issues.svg?style=flat-square)](https://github.com/caldenrodrigues/DisTrack/issues) 
+[![Pending Pull-Requests](http://githubbadges.herokuapp.com/caldenrodrigues/DisTrack/pulls.svg?style=flat-square)](https://github.com/caldenrodrigues/DisTrack/pulls) 
 [![License](https://img.shields.io/badge/license-GNU-blue.svg)](LICENSE.md)
 
 

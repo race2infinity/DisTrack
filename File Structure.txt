@@ -1,0 +1,8 @@
+/server.js              - Start server
+/contracts/             - Ethereum Smart Contracts
+/migrations/            - Truffle migrations
+
+/views/                 - Website front-end
+/views/css/             - CSS files of the website
+/views/Pics/            - All images used in the website
+/views/vendors/         - jQuery, bootstrap code

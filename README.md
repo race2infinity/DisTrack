@@ -1,8 +1,6 @@
-# DisTract
-
 <div align="center">
 
-[![DisTrack](https://i.imgur.com/j0ocDe5.jpg)
+![DisTrack](https://i.imgur.com/j0ocDe5.jpg)
 
 [![Hackathon](https://img.shields.io/badge/hackathon-KJSCE-orange.svg)](http://hackit.csikjsce.org/) 
 [![Status](https://img.shields.io/badge/status-active-green.svg)]() 

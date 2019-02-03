@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const Web3 = require('web3');
 const mysql = require('mysql');
-const BigNumber = require('bignumber.js')
+const BigNumber = require('bignumber.js');
 
 var crypto = require('crypto'),
     format = require('biguint-format');
@@ -28,6 +28,7 @@ connection.connect(function(err) {
         console.log('Connected to MySql!\n');
     } else {
         console.log('Not connected to MySql.\n');
+        console.log(err);
     }
 });
 
@@ -65,18 +66,10 @@ const abiArray = [
 		"inputs": [
 			{
 				"name": "_id",
-				"type": "string"
-			},
-			{
-				"name": "_name",
-				"type": "string"
-			},
-			{
-				"name": "_expire",
-				"type": "string"
+				"type": "uint256"
 			}
 		],
-		"name": "createAsset",
+		"name": "completedOperation",
 		"outputs": [
 			{
 				"name": "",
@@ -118,8 +111,92 @@ const abiArray = [
 				"type": "bool"
 			}
 		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "initialize",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
 		"payable": true,
 		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_latitude",
+				"type": "string"
+			},
+			{
+				"name": "_longitude",
+				"type": "string"
+			},
+			{
+				"name": "_altitude",
+				"type": "string"
+			},
+			{
+				"name": "_firstAid",
+				"type": "string"
+			},
+			{
+				"name": "_foodPack",
+				"type": "string"
+			},
+			{
+				"name": "_waterPack",
+				"type": "string"
+			}
+		],
+		"name": "request",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_id",
+				"type": "uint256"
+			}
+		],
+		"name": "checkStatus",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			},
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -139,29 +216,6 @@ const abiArray = [
 			{
 				"name": "",
 				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_id",
-				"type": "string"
-			}
-		],
-		"name": "getAssetDetails",
-		"outputs": [
-			{
-				"name": "",
-				"type": "string"
-			},
-			{
-				"name": "",
-				"type": "string"
 			}
 		],
 		"payable": false,
@@ -210,10 +264,29 @@ const abiArray = [
 		"payable": false,
 		"stateMutability": "view",
 		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "v",
+				"type": "uint256"
+			}
+		],
+		"name": "uintToString",
+		"outputs": [
+			{
+				"name": "str",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
 	}
 ];
 
-const address = '0x2e9908551069ac8da6de02ad4dfae5cd6e6b1713';
+const address = '0x0971b5d216af52c411c9016bbc63665b4e6f2542';
 
 const contract = web3.eth.contract(abiArray);
 
@@ -225,14 +298,14 @@ router.post('/create', (req,res) => {
   let latitude = req.body.latitude;
   let longitude = req.body.longitude;
   let altitude = req.body.altitude;
-  var id=crypto.randomBytes(3).toString('hex');
-  console.log(name,latitude,longitude,altitude);
+  var id=crypto.randomBytes(2).toString('hex');
+  //console.log(name,latitude,longitude,altitude);
   let ok = contractInstance.createSupplier(id, name, latitude, longitude, altitude,
-                                                        { from: web3.eth.accounts[0], gas: 3000000 });
+                                                        { from: web3.eth.accounts[0], gas: 5000000 });
     if(!ok) {
         return res.status(400).send('Error');
     }
-    console.log(`Successfully added ${name} to Blockchain \n`);
+    console.log(`Successfully added ${id} to Blockchain \n`);
     connection.query('INSERT INTO SUPPLIER VALUES (?,?,?,?,?)', [id, name, latitude, longitude, altitude], (error, results) => {
       if (error) {
             console.log(error);
@@ -267,49 +340,81 @@ router.get('/get', (req,res) => {
     });
 });
 
-router.get('/asset', (req,res) => {
-  let resultString=`{\"supplier\":[`;
-  connection.query('SELECT * FROM ASSETS', [] ,(error,results) => {
-    if (error) {
-        console.log(error);
-        return res.status(400);
+router.post('/addAssetsToSupplier', (req,res) => {
+  let supplierId = req.body.supplierId;
+  let assetId = req.body.assetId;
+  let ok = contractInstance.addAssetsToSupplier(assetId,supplierId, { from: web3.eth.accounts[0], gas: 3000000 });
+    if(!ok) {
+        return res.status(400).send('Error');
     }
-    if(results.length){
-      for(i=0;i<results.length;i++){
-        let ok = contractInstance.getAssetDetails(results[i].id, { from: web3.eth.accounts[0], gas: 3000000 });
-          if(!ok) {
-              return res.status(400).send('Error');
-          }
-          resultString+=`{\"id\":\"${results[i].id}\",\"name\":\"${ok[0]}\",\"expire\":\"${ok[1]}\"}`;
-          if(i!=results.length-1){
-            resultString+=`,`;
-          }
-      }
-      resultString+=`]}`;
-      res.send(resultString);
-    }
-  });
+  res.send("Succcess");
 });
 
-router.post('/createAsset', (req,res) => {
-  let name = req.body.name;
-  let expire = req.body.expire;
-  var id=crypto.randomBytes(3).toString('hex');
-  console.log(name,expire);
-  let ok = contractInstance.createAsset(id, name, expire,
+// router.get('/asset', (req,res) => {
+//   let resultString=`{\"supplier\":[`;
+//   connection.query('SELECT * FROM ASSETS', [] ,(error,results) => {
+//     if (error) {
+//         console.log(error);
+//         return res.status(400);
+//     }
+//     if(results.length){
+//       for(i=0;i<results.length;i++){
+//         let ok = contractInstance.getAssetDetails(results[i].id, { from: web3.eth.accounts[0], gas: 3000000 });
+//           if(!ok) {
+//               return res.status(400).send('Error');
+//           }
+//           resultString+=`{\"id\":\"${results[i].id}\",\"name\":\"${ok[0]}\",\"expire\":\"${ok[1]}\"}`;
+//           if(i!=results.length-1){
+//             resultString+=`,`;
+//           }
+//       }
+//       resultString+=`]}`;
+//       res.send(resultString);
+//     }
+//   });
+// });
+
+// router.post('/createAsset', (req,res) => {
+//   let name = req.body.name;
+//   let expire = req.body.expire;
+//   var id=crypto.randomBytes(3).toString('hex');
+//   console.log(name,expire);
+//   let ok = contractInstance.createAsset(id, name, expire,
+//                                                         { from: web3.eth.accounts[0], gas: 3000000 });
+//     if(!ok) {
+//         return res.status(400).send('Error');
+//     }
+//     console.log(`Successfully added ${name} to Blockchain \n`);
+//     connection.query('INSERT INTO ASSETS VALUES (?)', [id], (error, results) => {
+//       if (error) {
+//             console.log(error);
+//             return res.status(400);
+//         }
+//       res.send("Succcess");
+//     });
+// });
+
+router.post('/request' , (req,res) => {
+  let firstAid = req.body.firstAid;
+  let foodPack = req.body.foodPack;
+  let waterPack = req.body.waterPack;
+  let latitude = req.body.latitude;
+  let longitude = req.body.longitude;
+  let altitude = req.body.altitude;
+  console.log(req);
+  let ok = contractInstance.request(latitude, longitude, altitude, firstAid, foodPack, waterPack,
                                                         { from: web3.eth.accounts[0], gas: 3000000 });
     if(!ok) {
         return res.status(400).send('Error');
     }
-    console.log(`Successfully added ${name} to Blockchain \n`);
-    connection.query('INSERT INTO ASSETS VALUES (?)', [id], (error, results) => {
-      if (error) {
-            console.log(error);
-            return res.status(400);
-        }
-      res.send("Succcess");
-    });
+    console.log(ok[0]);
+    return res.send(ok[0]);
+
+    // var io = req.app.get('socketio');
+
+
 });
+
 
 router.post('/availability', (req,res) => {
   let latitude = req.body.latitude;
@@ -318,7 +423,7 @@ router.post('/availability', (req,res) => {
   var firstAid=0;
   var foodPack=0;
   var waterPack=0;
-  console.log(`latitude: ${latitude}, longitude: ${longitude}, altitude: ${altitude}`);
+  //console.log(`latitude: ${latitude}, longitude: ${longitude}, altitude: ${altitude}`);
   connection.query('Select * from SUPPLIER', [] , (error, results) => {
     if (error) {
           console.log(error);
@@ -326,7 +431,7 @@ router.post('/availability', (req,res) => {
       }
     for(i=0;i<results.length;i++){
       //Itterate through the result and make calls to the Blockchain and append in to a list and then convert into a json object
-      console.log(results[i].id);
+      //console.log(results[i].id);
       let ok = contractInstance.getSupplierDetails(results[i].id, { from: web3.eth.accounts[0], gas: 3000000 });
       if(!ok) {
           return res.status(400).send('Error');

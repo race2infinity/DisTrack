@@ -8,8 +8,9 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Heroic Features - Start Bootstrap Template</title>
-
+  <title>DisTrack</title>
+  <link rel="shortcut icon" href="Pics/favicon.png" type="image/png">
+  <link rel="shortcut icon" type="image/png" href="./Pics/favicon.png" />
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="animation.css" rel="stylesheet">
@@ -37,10 +38,16 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a style ="color: #fcfdfd " class="nav-link" href="#">GitHub
+            <a style ="color: #fcfdfd " class="nav-link" href="http://localhost:8080/addAssets">Add Assests
               <span class="sr-only">(current)</span>
             </a>
           </li>
+          <li class="nav-item active">
+            <a style ="color: #fcfdfd " class="nav-link" href="http://localhost:8080/addSupplier">Add Suppliers
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+
         </ul>
       </div>
     </div>
@@ -52,7 +59,7 @@
    <!-- Jumbotron Header -->
    <header class="jumbotron">
       <div class="container">
-     <h4 style="text-align: center;"><b>Steps</b></h4>
+     <h4 style="text-align: center;"><b>Working Of Process</b></h4>
      <div class="row fadeIn animated">
         <div class="col-md-8">
           <p class="lead"><ol><li>One drone is constantly scanning a small area for any signs of a disaster.</li>
@@ -92,9 +99,6 @@
             <h4 class="card-title">Availability</h4>
             <p class="card-text">Product Available</p>
           </div>
-          <!-- <div class="card-footer">
-            <a href="#" class="btn btn-primary">Find Out More!</a>
-          </div> -->
         </div>
       </div>
 
@@ -134,6 +138,10 @@
 
 <hr>
 
+  <script>
+ //  var socket = io();
+ // socket.on('message', function(data){alert(data)});
+  </script>
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

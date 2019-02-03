@@ -27,19 +27,25 @@ contract DisTrack{
         string latitude;
         string longitude;
         string altitude;
+        string firstAid;
+        string foodPack;
+        string waterPack;
     }
+    
+    string[] supplierArray;
     
     mapping (string => supplier) supplierMap;
     mapping (string => asset) assetMap;
     mapping (uint => drone) droneMap;
     
-    function createSupplier(string _id,string _name,string _latitude, string _longitude, string _altitude) public payable returns(bool){
+    function createSupplier(string _id,string _name,string _latitude, string _longitude, string _altitude) public  returns(bool){
         supplier supplierObj;
         supplierObj.name=_name;
         supplierObj.latitude=_latitude;
         supplierObj.longitude=_longitude;
         supplierObj.altitude=_altitude;
         supplierMap[_id]=supplierObj;
+        supplierArray.push(_id);
         return true;
     }
     
@@ -82,7 +88,7 @@ contract DisTrack{
         }
     }
 
-    function request(string _latitude, string _longitude, string _altitude) public payable returns(uint){
+    function request(string _latitude, string _longitude, string _altitude, string _firstAid, string _foodPack, string _waterPack) public payable returns(uint){
         uint i;
         for(i=0;i<3;i++){
             if(droneMap[i].status==false){
@@ -93,6 +99,17 @@ contract DisTrack{
         droneMap[i].latitude=_latitude;
         droneMap[i].longitude=_longitude;
         droneMap[i].altitude=_altitude;
+        droneMap[i].firstAid=_firstAid;
+        droneMap[i].foodPack=_foodPack;
+        droneMap[i].waterPack=_waterPack;
+        
+        for(i=0;i<supplierArray.length;i++){
+            if(compareStrings(_firstAid,"0") && compareStrings(_foodPack,"0") && compareStrings(_waterPack,"0")){
+                break;
+            }
+        supplierMap[supplierArray[i]].firstAid = supplierMap[supplierArray[i]].firstAid - 1;
+        }
+        
         return i;
     }
     

@@ -5,8 +5,11 @@ const hbs = require('hbs');
 const fs = require('fs');
 const Web3 = require('web3');
 const bodyParser = require('body-parser');
-
 const app = express();
+// var server = require('http').createServer(app);
+// var io = require('socket.io')(server);
+
+// app.set('socketio', io);
 
 // Body-parser Middleware
 app.use(bodyParser.json());
@@ -37,6 +40,14 @@ app.get('/', (req,res) => {
 
 app.get('/service', (req,res) => {
   res.sendFile('views/service.html', { root: __dirname });
+})
+
+app.get('/addAssets', (req,res) => {
+  res.sendFile('views/addAssets.html', { root: __dirname });
+})
+
+app.get('/addSupplier', (req,res) => {
+  res.sendFile('views/addSupplier.html', { root: __dirname });
 })
 
 app.use('/supplier',supplier);

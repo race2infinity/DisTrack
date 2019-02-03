@@ -8,6 +8,11 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Service Providers</title>
+  <link rel="shortcut icon" href="Pics/favicon.png" type="image/png">
+  <link rel="shortcut icon" type="image/png" href="./Pics/favicon.png" />
+
   <link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
 
 
@@ -68,22 +73,29 @@ font-weight: 600;
   <!-- Navigation -->
   <nav  class="navbar navbar-expand-lg navbar-dark  fixed-top" style="background-color:#d50000;">
     <div class="container">
-      <a style ="color:#fcfdfd" class="navbar-brand" href="http://localhost:8080">DisTrack</a>
+      <a style ="color:#fcfdfd" class="navbar-brand" href="http://localhost:8080">
+          <img src="./Pics/DS logo.jpeg" alt="" style="border-radius: 30%; width:15% ; align-self: center">
+        DisTrack
+      </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a style ="color: #fcfdfd " class="nav-link" href="https://www.youtube.com/watch?v=qi6YJ1elIUU">GitHub
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
+            <li class="nav-item active">
+                <a style ="color: #fcfdfd " class="nav-link" href="http://localhost:8080/assets_add">Add Assests
+                  <span class="sr-only">(current)</span>
+                </a>
+              </li>
+              <li class="nav-item active">
+                <a style ="color: #fcfdfd " class="nav-link" href="http://localhost:8080/suppliers_add">Add Suppliers
+                  <span class="sr-only">(current)</span>
+                </a>
+              </li>
         </ul>
       </div>
     </div>
   </nav>
-
 
 
   <section id="tabs" class="project-tab">
@@ -92,7 +104,7 @@ font-weight: 600;
                 <div class="col-md-12">
                     <nav>
                         <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                            <a class="nav-item nav-link active" id="firstTitle" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-profile" aria-selected="false">Project Tab 1</a>
+                            <a class="nav-item nav-link active" id="firstTitle" data-toggle="tab" href="#firstTable" role="tab" aria-controls="nav-profile" aria-selected="false">Project Tab 1</a>
                             <a class="nav-item nav-link" id="secondTitle" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Project Tab 2</a>
                             <a class="nav-item nav-link" id="thirdTitle" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Project Tab 3</a>
                         </div>

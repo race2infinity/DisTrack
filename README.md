@@ -4,8 +4,8 @@
 
   [![Hackathon](https://img.shields.io/badge/hackathon-KJSCE-orange.svg)](http://hackit.csikjsce.org/) 
   [![Status](https://img.shields.io/badge/status-active-green.svg)]() 
-  [![Github Issues](http://githubbadges.herokuapp.com/kylelobo/DisTrack/issues.svg?style=flat-square)](https://github.com/kylelobo/DisTrack/issues) 
-  [![Pending Pull-Requests](http://githubbadges.herokuapp.com/kylelobo/DisTrack/pulls.svg?style=flat-square)](https://github.com/kylelobo/DisTrack/pulls) 
+  [![Github Issues](https://img.shields.io/github/issues/kylelobo/DisTrack.svg)](https://github.com/kylelobo/DisTrack/issues) 
+  [![Pending Pull-Requests](https://img.shields.io/github/issues-pr/kylelobo/DisTrack.svg)](https://github.com/kylelobo/DisTrack/pulls) 
   [![License](https://img.shields.io/badge/license-GNU-blue.svg)](LICENSE)
 
 </div>

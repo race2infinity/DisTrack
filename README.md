@@ -174,7 +174,7 @@ Website:
 + IoT infrastructure is weak.
 
 ## Future Scope <a name="future_scope"></a>
-+ Migrating the Blockchain network from Ethereum to Tangle / BigchainDb
++ Migrating the Blockchain network from Ethereum to Tangle / BigchainDB.
 + Implement digital tokens which can be used to enable M2M economy.
 
 ## Contributing <a name="contributing"></a>

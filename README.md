@@ -16,6 +16,7 @@
 
 # Table of Content
 + [About](#description)
++ [Demo / Working](#demo)
 + [Use Cases](#use_cases)
 + [Getting Started](#getting_started)
 + [Deployment](#deployment)
@@ -25,7 +26,7 @@
 + [Authors](#authors)
 + [Inspiration](#inspiration)
 
-## About<a name="description"></a>
+## About <a name="description"></a>
 + The IoT represents one of the major pillars of greater automation efforts, but can easily be hacked. This could potentially lead to disastrous consequences, like for example with self driving cars. What if machines operate autonomously on the blockchain? What if machines only need to interact with other machines? Can we create ecosystems where the machines work together beneficial for society?
 + In this repo, we propose a way to let drones operate on blockchain. These drones could be used for a wide variety of [tasks](#use_cases), from exploring planets in the far future, to well coordinated search and rescue missions in the present day.
 + We planned to go with a different approach for this hackathon. Rather than a traditional _"thinking of solutions for clients"_ approach where people are primarily focused on business and money, we plan to envision the world of tomorrow.
@@ -33,13 +34,11 @@
 + We have a global identity system which is decentralized. This is because a centralized system is too valuable of a target.
 + We plan to implement a proof-of-concept system employing a blockchain-based decentralized application where machines have agreements and comunicate each other, unlike the tradional scenario wherein a central authority owns the system.
 
----
+## Demo / Working <a name="demo"></a>
 
 <div align="center">
 
-
-![Process](https://i.imgur.com/X7Yvlyq.gif)
-
+  ![Process](https://i.imgur.com/X7Yvlyq.gif)
 
 </div>
 
@@ -47,7 +46,7 @@
 2. A disaster occurs at some location. The 1st drone then informs the ledger about this disaster.
 3. Based on the availablitiy of drones, a food package drone is sent out to the location in order to drop several food packages.
 
-## Use Cases<a name="use_cases"></a>
+## Use Cases <a name="use_cases"></a>
 + Search & rescue in case of disasters - In this scenario, there are multiple drones that are scouting for any sign of disaster. As soon as a disaster is encountered, these drones can trigger some action. For eg, food package carrier drones can come and assist them.
 + In the field of research, drones can be sent out to remote locations to scout and gather data. They can be given tokens as a digital incentive and this can be at the cost of their batteries.
 + Building houses/buildings using drones.
@@ -57,12 +56,10 @@
 
 Thus, in the future world, us humans are liberated from performing tedious, hard, and especially dangerous tasks.
 
-## Getting Started<a name="getting_started"></a>
-
+## Getting Started <a name="getting_started"></a>
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ### Prerequisites
-
 What things you need to install the software and how to install them
 Installing NodeJs
 ```
@@ -70,9 +67,7 @@ $ sudo apt-get install nodejs
 ```
 Installing [Android Studio](https://developer.android.com/studio/)
 
-
 ### Installing
-
 A step by step series of examples that tell you how to get a development env running
 
 Cloning the repo
@@ -89,7 +84,7 @@ Running the server
 $ node server.js
 ```
 
-## Deployment<a name="deployment"></a>
+## Deployment <a name="deployment"></a>
 **1. Instantiate your data directory**
 ```
 geth --datadir ./myDataDir init ./myGenesis.json
@@ -156,7 +151,7 @@ This is the geth JavaScript console. Any command with the symbol > should be typ
 > miner.stop()
 ```
 
-## Built With<a name="built_with"></a>
+## Built With <a name="built_with"></a>
 Mobile App:
 + [Android Studio](https://developer.android.com/studio/) - Android app
 + [NodeJs](https://nodejs.org/en/) - Server Environment
@@ -173,25 +168,23 @@ Website:
 + JavaScript - Scripting Language for web pages
 + Bootstrap - Templating
 
-## Limitations<a name="limitations"></a>
+## Limitations <a name="limitations"></a>
 + Blockchain databases take a lot of time to query data.
 + Despite the numerous IoT applications developed or currently under development, there is no way to perform micro-transactions (really small payments) without paying fees that in comparison are huge.
 + IoT infrastructure is weak.
 
-## Future Scope<a name="future_scope"></a>
+## Future Scope <a name="future_scope"></a>
 + Migrating the Blockchain network from Ethereum to Tangle / BigchainDb
 + Implement digital tokens which can be used to enable M2M economy.
 
-## Contributing<a name="contributing"></a>
-
+## Contributing <a name="contributing"></a>
 1. Fork it (<https://github.com/kylelobo/DisTrack/fork>)
 2. Create your feature branch (`git checkout -b feature/fooBar`)
 3. Commit your changes (`git commit -am 'Add some fooBar'`)
 4. Push to the branch (`git push origin feature/fooBar`)
 5. Create a new Pull Request
 
-## Authors<a name="authors"></a>
-
+## Authors <a name="authors"></a>
 + [Calden Rodrigues](https://github.com/caldenrodrigues) <br>
 + [JohnAnand Abraham](https://github.com/johnanand) <br>
 + [Kyle Lobo](https://github.com/kylelobo) <br>
@@ -199,5 +192,5 @@ Website:
 
 See also the list of [contributors](https://github.com/kylelobo/DisTrack/contributors) who participated in this project.
 
-## Inspiration<a name="inspiration"></a>
+## Inspiration <a name="inspiration"></a>
 [Eduardo Castello Ferrer](https://www.media.mit.edu/people/ecstll/overview/)

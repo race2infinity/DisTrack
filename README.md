@@ -14,7 +14,7 @@
 
 <p align="center">A machine-to-machine (M2M) automated system, designed to fulfil to the needs of people in disasters.</p>
 
-# Table of Content
+# Table of Contents
 + [About](#description)
 + [Demo / Working](#demo)
 + [Use Cases](#use_cases)
